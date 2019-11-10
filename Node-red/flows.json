@@ -1,0 +1,225 @@
+[
+    {
+        "id": "4c477dee.dcf044",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "10d6eadb.2c88f5",
+        "type": "mqtt in",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "topic": "sensores/beacondlt",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "6544d7cf.672ab8",
+        "x": 110,
+        "y": 129.00000381469727,
+        "wires": [
+            [
+                "7a9db4bc.fbe6dc",
+                "6f8a72c.92c2c8c"
+            ]
+        ]
+    },
+    {
+        "id": "48edd49.277a02c",
+        "type": "rpi-gpio out",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "pin": "11",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 576.0000152587891,
+        "y": 200.00002670288086,
+        "wires": []
+    },
+    {
+        "id": "6f8a72c.92c2c8c",
+        "type": "rpi-gpio out",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "pin": "13",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 580.0000152587891,
+        "y": 121.00000953674316,
+        "wires": []
+    },
+    {
+        "id": "7a9db4bc.fbe6dc",
+        "type": "function",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "func": "if(msg.payload == \"0\"){\n    msg.payload = \"1\";\n}\nelse{\n    msg.payload = \"0\";\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 355.00000762939453,
+        "y": 270.00000762939453,
+        "wires": [
+            [
+                "48edd49.277a02c"
+            ]
+        ]
+    },
+    {
+        "id": "15db7418.d36b0c",
+        "type": "mqtt in",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "topic": "sensores/temperaturedlt",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "bc9b0686.7e3878",
+        "x": 136.6666717529297,
+        "y": 368,
+        "wires": [
+            [
+                "8a35118c.46d93"
+            ]
+        ]
+    },
+    {
+        "id": "8a35118c.46d93",
+        "type": "debug",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 558.0000152587891,
+        "y": 367.0000104904175,
+        "wires": []
+    },
+    {
+        "id": "4cd7531a.f5544c",
+        "type": "mqtt in",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "topic": "sensores/humiditydlt",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "bc9b0686.7e3878",
+        "x": 120.66667175292969,
+        "y": 461,
+        "wires": [
+            [
+                "c4dd6ad9.30bf88"
+            ]
+        ]
+    },
+    {
+        "id": "c4dd6ad9.30bf88",
+        "type": "debug",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 555.0000991821289,
+        "y": 461.00001335144043,
+        "wires": []
+    },
+    {
+        "id": "ca4611.003909f",
+        "type": "rpi-gpio in",
+        "z": "4c477dee.dcf044",
+        "name": "PRI",
+        "pin": "7",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "x": 82.66667175292969,
+        "y": 527,
+        "wires": [
+            [
+                "f14ec99f.ad0268"
+            ]
+        ]
+    },
+    {
+        "id": "7cea92ba.d6a55c",
+        "type": "mqtt out",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "topic": "sensores/presencadlt",
+        "qos": "",
+        "retain": "",
+        "broker": "6544d7cf.672ab8",
+        "x": 581.0000152587891,
+        "y": 529.0000114440918,
+        "wires": []
+    },
+    {
+        "id": "f14ec99f.ad0268",
+        "type": "function",
+        "z": "4c477dee.dcf044",
+        "name": "",
+        "func": "if(msg.payload == \"0\"){\n    msg.payload = \"vazio\";\n}\nelse{\n    msg.payload = \"cheio\";\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 333.00000762939453,
+        "y": 518.0000133514404,
+        "wires": [
+            [
+                "7cea92ba.d6a55c"
+            ]
+        ]
+    },
+    {
+        "id": "6544d7cf.672ab8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "mqtt://test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "bc9b0686.7e3878",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "",
+        "broker": "mqtt://test.mosquitto.org",
+        "port": "1883",
+        "clientid": "856585",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "true",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]

@@ -1,0 +1,22 @@
+{
+    "name": "pi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+      "bluetooth-hci-socket": "git+https://github.com/jrobeson/node-bluetooth-hci-socket.git#fix-builds-for-node-10",
+      "mqtt": "^3.0.0",
+      "noble": "^1.9.1",
+      "node-beacon-scanner": "^0.2.1",
+      "node-dht-sensor": "^0.3.0",
+      "onoff": "^5.0.0",
+      "twilio": "^3.37.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  
